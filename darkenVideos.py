@@ -5,18 +5,18 @@ from moviepy import video
 
 def generate_darken_video(video_file, output_path):
     video_clip = (vfc.VideoFileClip(video_file, audio=False)
-                      .without_audio())
+                  .without_audio())
 
     # Save the final video
     darken_clip = video_clip.fl_image(darken)
     darken_clip.write_videofile(output_path,
-                               threads=8,
-                               codec="libx264")
+                                threads=8,
+                                codec="libx264")
     # Clean up the temporary files
     darken_clip.close()
 
 
-# Define a function to darken the frames
+# A defined function to darken the frames
 def darken(frame):
     return frame * 0.8
 
@@ -35,4 +35,3 @@ def generate_darken_videos(video_folder, output_folder):
 video_folder = "E:/Bots/VideoMaker/videos"
 output_folder = "E:/Bots/VideoMaker/videos/darken 20%"
 generate_darken_videos(video_folder, output_folder)
-

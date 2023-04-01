@@ -1,14 +1,10 @@
 import random
-import setupVideos
-import createVideosByNumber
-import moviepy.video.fx.all as vfx
+from trash import createVideosByNumber
 import moviepy.audio.fx.all as afx
 import moviepy.video.VideoClip as vc
 import moviepy.video.compositing.CompositeVideoClip as cvc
 import moviepy.video.io.VideoFileClip as vfc
-import moviepy.audio.AudioClip as ac
 import moviepy.audio.io.AudioFileClip as afc
-import sys
 import os
 
 
@@ -136,7 +132,7 @@ if __name__ == "__main__":
     # setupVideos.setup()
     video_folder = "E:/Bots/VideoMaker/videos"
     audio_folder = "E:/Bots/VideoMaker/audio/shaz/wav"
-    text_file = "E:/Bots/VideoMaker/sources/text.txt"
+    text_file = "/trash/text.txt"
     # TODO: edit list of fonts
     fonts = ['Want-Coffee']
     channel_name = "FulminatiX"
