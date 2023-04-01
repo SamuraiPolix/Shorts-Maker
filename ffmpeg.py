@@ -56,17 +56,17 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
 
 # TODO: set good positions
 # Define the paths and values to everything
-verse_text_image_path = "/verse_images"
-video_folder = "/videos"
-audio_folder = "/audio"
-output_folder = "/customers"
-json_file = "/sources/merged_data.json"
+verse_text_image_path = "E:/Bots/VideoMaker/verse_images"
+video_folder = "E:/Bots/VideoMaker/videos"
+audio_folder = "E:/Bots/VideoMaker/audio"
+output_folder = "E:/Bots/VideoMaker/customers"
+json_file = "E:/Bots/VideoMaker/sources/love_data.json"
 # font_dir = "C:/Windows/Fonts"
-fonts_dir = "/sources/fonts"
+fonts_dir = "E:/Bots/VideoMaker/sources/fonts"
 text_source_font = r"C\:/Users/Samurai/AppData/Local/Microsoft/Windows/Fonts/Aloevera-OVoWO.ttf"
-image_path = "/sources/logo.png"
-customer_name = "testingjson"
-number_of_videos = 16
+image_path = "E:/Bots/VideoMaker/sources/logo.png"
+customer_name = "Felicia"
+number_of_videos = 100
 fonts = ['E:/Bots/VideoMaker/sources/fonts/AdventureScript.ttf', 'E:/Bots/VideoMaker/sources/fonts/AwesomeQuote.ttf', 'E:/Bots/VideoMaker/sources/fonts/BusterDown.ttf', 'E:/Bots/VideoMaker/sources/fonts/CoffeeJellyUmai.ttf', 'E:/Bots/VideoMaker/sources/fonts/CourierprimecodeRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/EbGaramond08Regular-2mWe.ttf', 'E:/Bots/VideoMaker/sources/fonts/FlowersSunday.otf', 'E:/Bots/VideoMaker/sources/fonts/GreatVibes-Regular.ttf', 'E:/Bots/VideoMaker/sources/fonts/GreenTeaJelly.ttf', 'E:/Bots/VideoMaker/sources/fonts/HeyMarch.ttf', 'E:/Bots/VideoMaker/sources/fonts/Hugamour.ttf', 'E:/Bots/VideoMaker/sources/fonts/LetsCoffee.otf', 'E:/Bots/VideoMaker/sources/fonts/Lightning Script.ttf', 'E:/Bots/VideoMaker/sources/fonts/LikeSlim.ttf', 'E:/Bots/VideoMaker/sources/fonts/LoftygoalsRegular.otf', 'E:/Bots/VideoMaker/sources/fonts/PineappleDays.ttf', 'E:/Bots/VideoMaker/sources/fonts/RecklessBrush.ttf', 'E:/Bots/VideoMaker/sources/fonts/SenjaSantuy.otf', 'E:/Bots/VideoMaker/sources/fonts/SillyHandScriptRegular.otf', 'E:/Bots/VideoMaker/sources/fonts/SunnySpellsBasicRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/TakeCoffee.ttf', 'E:/Bots/VideoMaker/sources/fonts/WantCoffee.ttf']
 fonts_sizes = [100, 60, 100, 100, 70, 75, 65, 90, 110, 80, 73, 50, 90, 80, 75, 52, 120, 80, 80, 87, 50, 65]
 fonts_maxcharline = [38, 35, 35, 34, 25, 37, 30, 35, 37, 35, 35, 34, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35]
