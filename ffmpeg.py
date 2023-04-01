@@ -136,7 +136,7 @@ for i in range(number_of_videos):
     # fix bug that ':' and beyond wasn't showing on screen
     text_source = text_source.replace(':', '\:')
 
-    output_path += f"/{i}-{text_source_for_name}-{random_video_num}-{random_audio_num}-{random_font_num}.mp4"
+    output_path += f"/{i}-{text_source_for_name}_{random_video_num}_{random_audio_num}_{random_font_num}.mp4"
     # FFMPEG command to overlay images and text onto input video
     ffmpeg_command = (f'ffmpeg -y -loop 1 -i "{image_path}" -i "{audio_file}" '
                       f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
