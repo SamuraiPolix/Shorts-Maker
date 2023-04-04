@@ -65,8 +65,8 @@ json_file = "E:/Bots/VideoMaker/sources/love_data.json"
 fonts_dir = "E:/Bots/VideoMaker/sources/fonts"
 text_source_font = r"C\:/Users/Samurai/AppData/Local/Microsoft/Windows/Fonts/Aloevera-OVoWO.ttf"
 image_path = "E:/Bots/VideoMaker/sources/logo.png"
-customer_name = "Fer"
-number_of_videos = 20
+customer_name = "without_logo"
+number_of_videos = 100
 fonts = ['E:/Bots/VideoMaker/sources/fonts/AdventureScript.ttf', 'E:/Bots/VideoMaker/sources/fonts/AwesomeQuote.ttf', 'E:/Bots/VideoMaker/sources/fonts/BusterDown.ttf', 'E:/Bots/VideoMaker/sources/fonts/CoffeeJellyUmai.ttf', 'E:/Bots/VideoMaker/sources/fonts/CourierprimecodeRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/EbGaramond08Regular-2mWe.ttf', 'E:/Bots/VideoMaker/sources/fonts/FlowersSunday.otf', 'E:/Bots/VideoMaker/sources/fonts/GreatVibes-Regular.ttf', 'E:/Bots/VideoMaker/sources/fonts/GreenTeaJelly.ttf', 'E:/Bots/VideoMaker/sources/fonts/HeyMarch.ttf', 'E:/Bots/VideoMaker/sources/fonts/Hugamour.ttf', 'E:/Bots/VideoMaker/sources/fonts/LetsCoffee.otf', 'E:/Bots/VideoMaker/sources/fonts/Lightning Script.ttf', 'E:/Bots/VideoMaker/sources/fonts/LikeSlim.ttf', 'E:/Bots/VideoMaker/sources/fonts/LoftygoalsRegular.otf', 'E:/Bots/VideoMaker/sources/fonts/PineappleDays.ttf', 'E:/Bots/VideoMaker/sources/fonts/RecklessBrush.ttf', 'E:/Bots/VideoMaker/sources/fonts/SenjaSantuy.otf', 'E:/Bots/VideoMaker/sources/fonts/SillyHandScriptRegular.otf', 'E:/Bots/VideoMaker/sources/fonts/SunnySpellsBasicRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/TakeCoffee.ttf', 'E:/Bots/VideoMaker/sources/fonts/WantCoffee.ttf']
 fonts_sizes = [100, 60, 100, 100, 70, 75, 65, 90, 110, 80, 73, 50, 90, 80, 75, 52, 120, 80, 80, 87, 50, 65]
 fonts_maxcharline = [38, 35, 35, 34, 25, 37, 30, 35, 37, 35, 35, 34, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35]
@@ -135,18 +135,28 @@ for i in range(number_of_videos):
 
     # fix bug that ':' and beyond wasn't showing on screen
     text_source = text_source.replace(':', '\:')
-
+    text_source_for_name = text_source_for_name.replace(' ', '')
     output_path += f"/{i}-{text_source_for_name}_{random_video_num}_{random_audio_num}_{random_font_num}.mp4"
     # FFMPEG command to overlay images and text onto input video
-    ffmpeg_command = (f'ffmpeg -y -loop 1 -i "{image_path}" -i "{audio_file}" '
+    # ffmpeg_command = (f'ffmpeg -y -loop 1 -i "{image_path}" -i "{audio_file}" '
+    #                   f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
+    #                   f'"[2:v][0:v]overlay=(W-w)/2:{image_y}[v1]; '
+    #                   # f'[v1]drawtext=fontfile={selected_font}:text=\'{text_verse}\':x=(w-text_w)/2:y=(h-text_h)/2:fontsize=60:fontcolor=white:'
+    #                   # f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
+    #                   f'[v1]drawtext=fontfile=\'{text_source_font}\':text=\'{text_source}\':x=(w-text_w)/2:y={text2_y}:fontsize=42:fontcolor=white:'
+    #                   f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
+    #                   f'[v2][3:v]overlay=(W-w)/2:{video_height}/4:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
+    #                   f'-t {video_duration} -map "[v3]" -map 1:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
+
+    # WITHOUT LOGO
+    ffmpeg_command = (f'ffmpeg -y -i "{audio_file}" '
                       f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
-                      f'"[2:v][0:v]overlay=(W-w)/2:{image_y}[v1]; '
                       # f'[v1]drawtext=fontfile={selected_font}:text=\'{text_verse}\':x=(w-text_w)/2:y=(h-text_h)/2:fontsize=60:fontcolor=white:'
                       # f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
-                      f'[v1]drawtext=fontfile=\'{text_source_font}\':text=\'{text_source}\':x=(w-text_w)/2:y={text2_y}:fontsize=42:fontcolor=white:'
-                      f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
-                      f'[v2][3:v]overlay=(W-w)/2:{video_height}/4:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
-                      f'-t {video_duration} -map "[v3]" -map 1:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
+                      f'"drawtext=fontfile=\'{text_source_font}\':text=\'{text_source}\':x=(w-text_w)/2:y={text2_y}:fontsize=42:fontcolor=white:'
+                      f'enable=\'between(t,{text_start_time},{video_duration})\'[v1]; '
+                      f'[v1][2:v]overlay=(W-w)/2:{video_height}/4:enable=\'between(t,{text_start_time},{video_duration})\'[v2]" '
+                      f'-t {video_duration} -map "[v2]" -map 0:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
 
     # Run FFMPEG command
     subprocess.call(ffmpeg_command, shell=True)

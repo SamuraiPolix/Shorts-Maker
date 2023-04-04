@@ -20,7 +20,7 @@
       "id" : 1,
       "src" : "fiverr_banner.png",
       "rect" : [0, 0, 1280, 769],
-      "lastMod" : "20230402T133741",
+      "lastMod" : "20230404T164756",
       "loudnessNormalization" : true,
       "sourceTracks" : [
         {
@@ -44,7 +44,7 @@
       "id" : 2,
       "src" : "1.mp4",
       "rect" : [0, 0, 1080, 1920],
-      "lastMod" : "20230402T075901",
+      "lastMod" : "20230404T164756",
       "loudnessNormalization" : true,
       "sourceTracks" : [
         {
@@ -68,7 +68,7 @@
       "id" : 3,
       "src" : "fiverr_banner_no_phone.png",
       "rect" : [0, 0, 1280, 769],
-      "lastMod" : "20230402T134008",
+      "lastMod" : "20230404T164756",
       "loudnessNormalization" : true,
       "sourceTracks" : [
         {
@@ -92,7 +92,7 @@
       "id" : 4,
       "src" : "phone mockp.png",
       "rect" : [0, 0, 345, 715],
-      "lastMod" : "20230402T134117",
+      "lastMod" : "20230404T164756",
       "loudnessNormalization" : true,
       "sourceTracks" : [
         {
@@ -116,7 +116,7 @@
       "id" : 5,
       "src" : "free-sample.png",
       "rect" : [0, 0, 347, 202],
-      "lastMod" : "20230402T134810",
+      "lastMod" : "20230404T164756",
       "loudnessNormalization" : true,
       "sourceTracks" : [
         {
@@ -135,10 +135,46 @@
       "metadata" : {
         "timeAdded" : "20230402T134824.735976"
       }
+    },
+    {
+      "id" : 6,
+      "src" : "1-1Corinthians1614_10_26_7.mp4",
+      "rect" : [0, 0, 1080, 1920],
+      "lastMod" : "20230404T175044",
+      "loudnessNormalization" : true,
+      "sourceTracks" : [
+        {
+          "range" : [0, 23709],
+          "type" : 0,
+          "editRate" : 1000,
+          "trackRect" : [0, 0, 1080, 1920],
+          "sampleRate" : "120001/5000",
+          "bitDepth" : 24,
+          "numChannels" : 0,
+          "integratedLUFS" : 100.0,
+          "peakLevel" : -1.0,
+          "metaData" : ""
+        },
+        {
+          "range" : [0, 23694],
+          "type" : 2,
+          "editRate" : 1000,
+          "trackRect" : [0, 0, 0, 0],
+          "sampleRate" : 44100,
+          "bitDepth" : 16,
+          "numChannels" : 2,
+          "integratedLUFS" : 100.0,
+          "peakLevel" : -1.0,
+          "metaData" : ""
+        }
+      ],
+      "metadata" : {
+        "timeAdded" : "20230404T175227.994743"
+      }
     }
   ],
   "timeline" : {
-    "id" : 6,
+    "id" : 7,
     "sceneTrack" : {
       "scenes" : [
         {
@@ -148,7 +184,7 @@
                 "trackIndex" : 0,
                 "medias" : [
                   {
-                    "id" : 7,
+                    "id" : 8,
                     "_type" : "IMFile",
                     "src" : 3,
                     "trackNumber" : 0,
@@ -157,57 +193,21 @@
                       "ident" : "fiverr_banner_no_phone"
                     },
                     "parameters" : {
-                      "translation1" : {
-                        "type" : "double",
-                        "defaultValue" : -0.5,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop2" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop3" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop2" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop3" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      }
+                      "translation1" : -0.5,
+                      "sourceCrop0" : 0.0,
+                      "sourceCrop1" : 0.0,
+                      "sourceCrop2" : 0.0,
+                      "sourceCrop3" : 0.0,
+                      "geometryCrop0" : 0.0,
+                      "geometryCrop1" : 0.0,
+                      "geometryCrop2" : 0.0,
+                      "geometryCrop3" : 0.0
                     },
                     "effects" : [
 
                     ],
                     "start" : 0,
-                    "duration" : 370,
+                    "duration" : 711,
                     "mediaStart" : 0,
                     "mediaDuration" : 1,
                     "scalar" : 1,
@@ -230,149 +230,181 @@
                 "trackIndex" : 1,
                 "medias" : [
                   {
-                    "id" : 8,
-                    "_type" : "VMFile",
-                    "src" : 2,
-                    "trackNumber" : 0,
-                    "attributes" : {
-                      "ident" : "1"
-                    },
-                    "parameters" : {
-                      "translation0" : {
-                        "type" : "double",
-                        "defaultValue" : -421.585172915439,
-                        "interp" : "eioe"
-                      },
-                      "translation1" : {
-                        "type" : "double",
-                        "defaultValue" : -0.581867283950777,
-                        "interp" : "eioe"
-                      },
-                      "scale0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.339155543983755,
-                        "interp" : "eioe"
-                      },
-                      "scale1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.345549326453189,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop2" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop3" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop2" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop3" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      }
-                    },
-                    "effects" : [
+                    "id" : 9,
+                    "_type" : "UnifiedMedia",
+                    "video" : 
                         {
-                          "effectName" : "RoundCorners",
-                          "bypassed" : false,
-                          "category" : "categoryVisualEffects",
+                          "id" : 10,
+                          "_type" : "VMFile",
+                          "src" : 6,
+                          "trackNumber" : 0,
+                          "attributes" : {
+                            "ident" : "1-1Corinthians1614_10_26_7"
+                          },
                           "parameters" : {
-                            "bottom-left" : {
+                            "translation0" : {
                               "type" : "double",
-                              "defaultValue" : 1.0,
-                              "interp" : "linr",
-                              "uiHints" : {
-                                "userInterfaceType" : 0,
-                                "unitType" : 0
-                              }
+                              "defaultValue" : -421.585172915439,
+                              "interp" : "eioe"
                             },
-                            "bottom-right" : {
+                            "translation1" : {
                               "type" : "double",
-                              "defaultValue" : 1.0,
-                              "interp" : "linr",
-                              "uiHints" : {
-                                "userInterfaceType" : 0,
-                                "unitType" : 0
-                              }
+                              "defaultValue" : -0.581867283950777,
+                              "interp" : "eioe"
                             },
-                            "radius" : {
+                            "scale0" : {
                               "type" : "double",
-                              "defaultValue" : 90.0,
-                              "interp" : "linr",
-                              "uiHints" : {
-                                "userInterfaceType" : 0,
-                                "unitType" : 0
-                              }
+                              "defaultValue" : 0.339155543983755,
+                              "interp" : "eioe"
                             },
-                            "top-left" : {
+                            "scale1" : {
                               "type" : "double",
-                              "defaultValue" : 1.0,
-                              "interp" : "linr",
-                              "uiHints" : {
-                                "userInterfaceType" : 0,
-                                "unitType" : 0
-                              }
+                              "defaultValue" : 0.339155543983755,
+                              "interp" : "eioe"
                             },
-                            "top-right" : {
+                            "sourceCrop0" : {
                               "type" : "double",
-                              "defaultValue" : 1.0,
-                              "interp" : "linr",
-                              "uiHints" : {
-                                "userInterfaceType" : 0,
-                                "unitType" : 0
-                              }
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "sourceCrop1" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "sourceCrop2" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "sourceCrop3" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "geometryCrop0" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "geometryCrop1" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "geometryCrop2" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
+                            },
+                            "geometryCrop3" : {
+                              "type" : "double",
+                              "defaultValue" : 0.0,
+                              "interp" : "eioe"
                             }
                           },
-                          "metadata" : {
-                            "default-RoundCorners_radius" : 20.0,
-                            "presetName" : "Corner Rounding"
+                          "effects" : [
+                              {
+                                "effectName" : "RoundCorners",
+                                "bypassed" : false,
+                                "category" : "categoryVisualEffects",
+                                "parameters" : {
+                                  "bottom-left" : {
+                                    "type" : "double",
+                                    "defaultValue" : 1.0,
+                                    "interp" : "linr",
+                                    "uiHints" : {
+                                      "userInterfaceType" : 0,
+                                      "unitType" : 0
+                                    }
+                                  },
+                                  "bottom-right" : {
+                                    "type" : "double",
+                                    "defaultValue" : 1.0,
+                                    "interp" : "linr",
+                                    "uiHints" : {
+                                      "userInterfaceType" : 0,
+                                      "unitType" : 0
+                                    }
+                                  },
+                                  "radius" : {
+                                    "type" : "double",
+                                    "defaultValue" : 90.0,
+                                    "interp" : "linr",
+                                    "uiHints" : {
+                                      "userInterfaceType" : 0,
+                                      "unitType" : 0
+                                    }
+                                  },
+                                  "top-left" : {
+                                    "type" : "double",
+                                    "defaultValue" : 1.0,
+                                    "interp" : "linr",
+                                    "uiHints" : {
+                                      "userInterfaceType" : 0,
+                                      "unitType" : 0
+                                    }
+                                  },
+                                  "top-right" : {
+                                    "type" : "double",
+                                    "defaultValue" : 1.0,
+                                    "interp" : "linr",
+                                    "uiHints" : {
+                                      "userInterfaceType" : 0,
+                                      "unitType" : 0
+                                    }
+                                  }
+                                },
+                                "metadata" : {
+                                  "default-RoundCorners_radius" : 20.0,
+                                  "effectIndex" : "0",
+                                  "presetName" : "Corner Rounding"
+                                }
+                              }
+                          ],
+                          "start" : 0,
+                          "duration" : 711,
+                          "mediaStart" : 0,
+                          "mediaDuration" : 711,
+                          "scalar" : 1,
+                          "animationTracks" : {
+
+                          }
+                        },
+                    "audio" : 
+                        {
+                          "id" : 11,
+                          "_type" : "AMFile",
+                          "src" : 6,
+                          "trackNumber" : 1,
+                          "attributes" : {
+                            "ident" : "",
+                            "gain" : 1.0,
+                            "mixToMono" : false,
+                            "loudnessNormalization" : true,
+                            "sourceFileOffset" : 0
+                          },
+                            "channelNumber" : "0,1",
+                          "effects" : [
+
+                          ],
+                          "start" : 0,
+                          "duration" : 711,
+                          "mediaStart" : 0,
+                          "mediaDuration" : 711,
+                          "scalar" : 1,
+                          "animationTracks" : {
+
                           }
                         }
-                    ],
+,
                     "start" : 0,
-                    "duration" : 237,
+                    "duration" : 711,
                     "mediaStart" : 0,
-                    "mediaDuration" : 237,
+                    "mediaDuration" : 711,
                     "scalar" : 1,
                     "metadata" : {
-                      "clipSpeedAttribute" : false,
-                      "default-height" : 770.0,
-                      "default-scale0" : 0.401041666666667,
-                      "default-scale1" : 0.401041666666667,
-                      "default-translation0" : 0.0,
-                      "default-translation1" : 0.0,
-                      "default-width" : 433.125
-                    },
-                    "animationTracks" : {
-
+                      "clipSpeedAttribute" : false
                     }
                   }
                 ]
@@ -381,7 +413,7 @@
                 "trackIndex" : 2,
                 "medias" : [
                   {
-                    "id" : 9,
+                    "id" : 12,
                     "_type" : "IMFile",
                     "src" : 4,
                     "trackNumber" : 0,
@@ -390,72 +422,24 @@
                       "ident" : "phone mockp"
                     },
                     "parameters" : {
-                      "translation0" : {
-                        "type" : "double",
-                        "defaultValue" : -420.380681818182,
-                        "interp" : "eioe"
-                      },
-                      "translation1" : {
-                        "type" : "double",
-                        "defaultValue" : -6.66666666666659,
-                        "interp" : "eioe"
-                      },
-                      "scale0" : {
-                        "type" : "double",
-                        "defaultValue" : 1.1651295564339,
-                        "interp" : "eioe"
-                      },
-                      "scale1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.98688714063714,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop2" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop3" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop2" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop3" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      }
+                      "translation0" : -421.585172915439,
+                      "translation1" : -5.83333333333339,
+                      "scale0" : 1.1651295564339,
+                      "scale1" : 0.965908119658119,
+                      "sourceCrop0" : 0.0,
+                      "sourceCrop1" : 0.0,
+                      "sourceCrop2" : 0.0,
+                      "sourceCrop3" : 0.0,
+                      "geometryCrop0" : 0.0,
+                      "geometryCrop1" : 0.0,
+                      "geometryCrop2" : 0.0,
+                      "geometryCrop3" : 0.0
                     },
                     "effects" : [
 
                     ],
                     "start" : 0,
-                    "duration" : 375,
+                    "duration" : 711,
                     "mediaStart" : 0,
                     "mediaDuration" : 1,
                     "scalar" : 1,
@@ -478,7 +462,7 @@
                 "trackIndex" : 3,
                 "medias" : [
                   {
-                    "id" : 10,
+                    "id" : 13,
                     "_type" : "IMFile",
                     "src" : 5,
                     "trackNumber" : 0,
@@ -490,223 +474,360 @@
                       "translation0" : {
                         "type" : "double",
                         "defaultValue" : 499.5,
-                        "interp" : "eioe"
+                        "keyframes" : [
+                          {
+                            "endTime" : 361,
+                            "time" : 331,
+                            "value" : 499.5,
+                            "duration" : 30
+                          }
+                        ]
                       },
                       "translation1" : {
                         "type" : "double",
                         "defaultValue" : 313.333333333333,
-                        "interp" : "eioe"
+                        "keyframes" : [
+                          {
+                            "endTime" : 361,
+                            "time" : 331,
+                            "value" : 313.333333333333,
+                            "duration" : 30
+                          }
+                        ]
+                      },
+                      "rotation2" : {
+                        "type" : "double",
+                        "defaultValue" : 0.0,
+                        "keyframes" : [
+                          {
+                            "endTime" : 361,
+                            "time" : 331,
+                            "value" : 0.0,
+                            "duration" : 30
+                          }
+                        ]
                       },
                       "scale0" : {
                         "type" : "double",
                         "defaultValue" : 1.0,
-                        "interp" : "eioe",
                         "keyframes" : [
                           {
-                            "endTime" : 39,
-                            "time" : 9,
+                            "endTime" : 30,
+                            "time" : 0,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 69,
-                            "time" : 39,
+                            "endTime" : 60,
+                            "time" : 30,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 100,
-                            "time" : 70,
+                            "endTime" : 91,
+                            "time" : 61,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 130,
-                            "time" : 100,
+                            "endTime" : 121,
+                            "time" : 91,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 160,
-                            "time" : 130,
+                            "endTime" : 151,
+                            "time" : 121,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 190,
-                            "time" : 160,
+                            "endTime" : 181,
+                            "time" : 151,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 220,
-                            "time" : 190,
+                            "endTime" : 211,
+                            "time" : 181,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 250,
-                            "time" : 220,
+                            "endTime" : 241,
+                            "time" : 211,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 280,
-                            "time" : 250,
+                            "endTime" : 271,
+                            "time" : 241,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 310,
-                            "time" : 280,
+                            "endTime" : 301,
+                            "time" : 271,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 340,
-                            "time" : 310,
+                            "endTime" : 331,
+                            "time" : 301,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 370,
-                            "time" : 340,
+                            "endTime" : 361,
+                            "time" : 331,
                             "value" : 1.0,
                             "duration" : 30
+                          },
+                          {
+                            "endTime" : 391,
+                            "time" : 361,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 421,
+                            "time" : 391,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 451,
+                            "time" : 421,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 481,
+                            "time" : 451,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 511,
+                            "time" : 481,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 542,
+                            "time" : 512,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 573,
+                            "time" : 543,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 603,
+                            "time" : 573,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 633,
+                            "time" : 603,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 663,
+                            "time" : 633,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 693,
+                            "time" : 663,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 711,
+                            "time" : 697,
+                            "value" : 1.0,
+                            "duration" : 14
                           }
                         ]
                       },
                       "scale1" : {
                         "type" : "double",
                         "defaultValue" : 1.0,
-                        "interp" : "eioe",
                         "keyframes" : [
                           {
-                            "endTime" : 39,
-                            "time" : 9,
+                            "endTime" : 30,
+                            "time" : 0,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 69,
-                            "time" : 39,
+                            "endTime" : 60,
+                            "time" : 30,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 100,
-                            "time" : 70,
+                            "endTime" : 91,
+                            "time" : 61,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 130,
-                            "time" : 100,
+                            "endTime" : 121,
+                            "time" : 91,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 160,
-                            "time" : 130,
+                            "endTime" : 151,
+                            "time" : 121,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 190,
-                            "time" : 160,
+                            "endTime" : 181,
+                            "time" : 151,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 220,
-                            "time" : 190,
+                            "endTime" : 211,
+                            "time" : 181,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 250,
-                            "time" : 220,
+                            "endTime" : 241,
+                            "time" : 211,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 280,
-                            "time" : 250,
+                            "endTime" : 271,
+                            "time" : 241,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 310,
-                            "time" : 280,
+                            "endTime" : 301,
+                            "time" : 271,
                             "value" : 1.0,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 340,
-                            "time" : 310,
+                            "endTime" : 331,
+                            "time" : 301,
                             "value" : 1.25,
                             "duration" : 30
                           },
                           {
-                            "endTime" : 370,
-                            "time" : 340,
+                            "endTime" : 361,
+                            "time" : 331,
                             "value" : 1.0,
                             "duration" : 30
+                          },
+                          {
+                            "endTime" : 391,
+                            "time" : 361,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 421,
+                            "time" : 391,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 451,
+                            "time" : 421,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 481,
+                            "time" : 451,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 511,
+                            "time" : 481,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 542,
+                            "time" : 512,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 573,
+                            "time" : 543,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 603,
+                            "time" : 573,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 633,
+                            "time" : 603,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 663,
+                            "time" : 633,
+                            "value" : 1.0,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 693,
+                            "time" : 663,
+                            "value" : 1.25,
+                            "duration" : 30
+                          },
+                          {
+                            "endTime" : 711,
+                            "time" : 697,
+                            "value" : 1.0,
+                            "duration" : 14
                           }
                         ]
                       },
-                      "sourceCrop0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop2" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "sourceCrop3" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop0" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop1" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop2" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      },
-                      "geometryCrop3" : {
-                        "type" : "double",
-                        "defaultValue" : 0.0,
-                        "interp" : "eioe"
-                      }
+                      "sourceCrop0" : 0.0,
+                      "sourceCrop1" : 0.0,
+                      "sourceCrop2" : 0.0,
+                      "sourceCrop3" : 0.0,
+                      "geometryCrop0" : 0.0,
+                      "geometryCrop1" : 0.0,
+                      "geometryCrop2" : 0.0,
+                      "geometryCrop3" : 0.0
                     },
                     "effects" : [
 
                     ],
                     "start" : 0,
-                    "duration" : 375,
+                    "duration" : 711,
                     "mediaStart" : 0,
                     "mediaDuration" : 1,
                     "scalar" : 1,
                     "metadata" : {
                       "clipSpeedAttribute" : false,
                       "default-height" : 202.0,
+                      "default-rotation2" : 0.0,
                       "default-scale0" : 1.0,
                       "default-scale1" : 1.0,
                       "default-translation0" : -0.5,
@@ -716,68 +837,133 @@
                     "animationTracks" : {
                       "visual" : [
                         {
-                          "endTime" : 39,
+                          "endTime" : 30,
                           "duration" : 30,
-                          "range" : [ 9, 30]
+                          "range" : [ 0, 30]
                         },
                         {
-                          "endTime" : 69,
+                          "endTime" : 60,
                           "duration" : 30,
-                          "range" : [ 39, 30]
+                          "range" : [ 30, 30]
                         },
                         {
-                          "endTime" : 100,
+                          "endTime" : 91,
                           "duration" : 30,
-                          "range" : [ 70, 30]
+                          "range" : [ 61, 30]
                         },
                         {
-                          "endTime" : 130,
+                          "endTime" : 121,
                           "duration" : 30,
-                          "range" : [ 100, 30]
+                          "range" : [ 91, 30]
                         },
                         {
-                          "endTime" : 160,
+                          "endTime" : 151,
                           "duration" : 30,
-                          "range" : [ 130, 30]
+                          "range" : [ 121, 30]
                         },
                         {
-                          "endTime" : 190,
+                          "endTime" : 181,
                           "duration" : 30,
-                          "range" : [ 160, 30]
+                          "range" : [ 151, 30]
                         },
                         {
-                          "endTime" : 220,
+                          "endTime" : 211,
                           "duration" : 30,
-                          "range" : [ 190, 30]
+                          "range" : [ 181, 30]
                         },
                         {
-                          "endTime" : 250,
+                          "endTime" : 241,
                           "duration" : 30,
-                          "range" : [ 220, 30]
+                          "range" : [ 211, 30]
                         },
                         {
-                          "endTime" : 280,
+                          "endTime" : 271,
                           "duration" : 30,
-                          "range" : [ 250, 30]
+                          "range" : [ 241, 30]
                         },
                         {
-                          "endTime" : 310,
+                          "endTime" : 301,
                           "duration" : 30,
-                          "range" : [ 280, 30]
+                          "range" : [ 271, 30]
                         },
                         {
-                          "endTime" : 340,
+                          "endTime" : 331,
                           "duration" : 30,
-                          "range" : [ 310, 30]
+                          "range" : [ 301, 30]
                         },
                         {
-                          "endTime" : 370,
+                          "endTime" : 361,
                           "duration" : 30,
-                          "range" : [ 340, 30]
+                          "range" : [ 331, 30]
+                        },
+                        {
+                          "endTime" : 391,
+                          "duration" : 30,
+                          "range" : [ 361, 30]
+                        },
+                        {
+                          "endTime" : 421,
+                          "duration" : 30,
+                          "range" : [ 391, 30]
+                        },
+                        {
+                          "endTime" : 451,
+                          "duration" : 30,
+                          "range" : [ 421, 30]
+                        },
+                        {
+                          "endTime" : 481,
+                          "duration" : 30,
+                          "range" : [ 451, 30]
+                        },
+                        {
+                          "endTime" : 511,
+                          "duration" : 30,
+                          "range" : [ 481, 30]
+                        },
+                        {
+                          "endTime" : 542,
+                          "duration" : 30,
+                          "range" : [ 512, 30]
+                        },
+                        {
+                          "endTime" : 573,
+                          "duration" : 30,
+                          "range" : [ 543, 30]
+                        },
+                        {
+                          "endTime" : 603,
+                          "duration" : 30,
+                          "range" : [ 573, 30]
+                        },
+                        {
+                          "endTime" : 633,
+                          "duration" : 30,
+                          "range" : [ 603, 30]
+                        },
+                        {
+                          "endTime" : 663,
+                          "duration" : 30,
+                          "range" : [ 633, 30]
+                        },
+                        {
+                          "endTime" : 693,
+                          "duration" : 30,
+                          "range" : [ 663, 30]
+                        },
+                        {
+                          "endTime" : 711,
+                          "duration" : 14,
+                          "range" : [ 697, 14]
                         }
                       ]
                     }
                   }
+                ]
+              },
+              {
+                "trackIndex" : 4,
+                "medias" : [
                 ]
               }            ]
           }
@@ -785,6 +971,18 @@
       ]
     },
     "trackAttributes" : [
+      {
+        "ident" : "",
+        "audioMuted" : false,
+        "videoHidden" : false,
+        "magnetic" : false,
+        "matte" : 0,
+        "solo" : false,
+        "metadata" : {
+          "IsLocked" : "False",
+          "WinTrackHeight" : "56"
+        }
+      },
       {
         "ident" : "",
         "audioMuted" : false,
@@ -852,7 +1050,7 @@
     "backgroundColor" : [ 0, 0, 0, 255]
   },
   "metadata" : {
-    "AutoSaveFile" : "C:\\Users\\samla\\AppData\\Local\\TechSmith\\Camtasia Studio\\21.0\\Auto-Saves\\promotion_video5ac3c7.autosave.tscproj",
+    "AutoSaveFile" : "C:\\Users\\Samurai\\AppData\\Local\\TechSmith\\Camtasia Studio\\21.0\\Auto-Saves\\promotion_video1913867.autosave.tscproj",
     "CanvasZoom" : 60,
     "Date" : "2023-04-02 04:35:42 PM",
     "Fit" : 0,
