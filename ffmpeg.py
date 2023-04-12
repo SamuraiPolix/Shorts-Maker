@@ -11,6 +11,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 
 def create_image(text, font_path, font_size, max_char_count, image_size, save_path, text_source):
+    text = fix_fonts(text, font_path)
     # Open a blank image
     img = Image.new('RGBA', image_size, color=(190, 190, 190, 0))
 
@@ -54,10 +55,16 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
     return f"{path_to_check}"
 
 
+def fix_fonts(text, font):
+    # Font 6 can't display '
+    if (font.__contains__("FlowersSunday")):
+        return text.replace("'", "")
+    return text
+
+
 # TODO: set good positions
 # Define the paths and values to everything
 # project_dir = os.getcwd()
-verse_text_image_path = "E:/Bots/VideoMaker/verse_images"
 video_folder = "E:/Bots/VideoMaker/videos"
 audio_folder = "E:/Bots/VideoMaker/audio"
 output_folder = "E:/Bots/VideoMaker/customers"
@@ -66,11 +73,12 @@ json_file = "E:/Bots/VideoMaker/sources/love_data.json"
 fonts_dir = "E:/Bots/VideoMaker/sources/fonts"
 text_source_font = r"C\:/Users/Samurai/AppData/Local/Microsoft/Windows/Fonts/Aloevera-OVoWO.ttf"
 image_path = "E:/Bots/VideoMaker/sources/logo.png"
-customer_name = "without_logo"
-number_of_videos = 100
-fonts = ['E:/Bots/VideoMaker/sources/fonts/AdventureScript.ttf', 'E:/Bots/VideoMaker/sources/fonts/AwesomeQuote.ttf', 'E:/Bots/VideoMaker/sources/fonts/BusterDown.ttf', 'E:/Bots/VideoMaker/sources/fonts/CoffeeJellyUmai.ttf', 'E:/Bots/VideoMaker/sources/fonts/CourierprimecodeRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/EbGaramond08Regular-2mWe.ttf', 'E:/Bots/VideoMaker/sources/fonts/FlowersSunday.otf', 'E:/Bots/VideoMaker/sources/fonts/GreatVibes-Regular.ttf', 'E:/Bots/VideoMaker/sources/fonts/GreenTeaJelly.ttf', 'E:/Bots/VideoMaker/sources/fonts/HeyMarch.ttf', 'E:/Bots/VideoMaker/sources/fonts/Hugamour.ttf', 'E:/Bots/VideoMaker/sources/fonts/LetsCoffee.otf', 'E:/Bots/VideoMaker/sources/fonts/Lightning Script.ttf', 'E:/Bots/VideoMaker/sources/fonts/LikeSlim.ttf', 'E:/Bots/VideoMaker/sources/fonts/LoftygoalsRegular.otf', 'E:/Bots/VideoMaker/sources/fonts/PineappleDays.ttf', 'E:/Bots/VideoMaker/sources/fonts/RecklessBrush.ttf', 'E:/Bots/VideoMaker/sources/fonts/SenjaSantuy.otf', 'E:/Bots/VideoMaker/sources/fonts/SillyHandScriptRegular.otf', 'E:/Bots/VideoMaker/sources/fonts/SunnySpellsBasicRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/TakeCoffee.ttf', 'E:/Bots/VideoMaker/sources/fonts/WantCoffee.ttf']
-fonts_sizes = [100, 60, 100, 100, 70, 75, 65, 90, 110, 80, 73, 50, 90, 80, 75, 52, 120, 80, 80, 87, 50, 65]
-fonts_maxcharline = [38, 35, 35, 34, 25, 37, 30, 35, 37, 35, 35, 34, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35]
+customer_name = "random2"
+verse_text_image_path = f"E:/Bots/VideoMaker/verse_images/{customer_name}"
+number_of_videos = 1
+fonts = ['E:/Bots/VideoMaker/sources/fonts/AdventureScript.ttf', 'E:/Bots/VideoMaker/sources/fonts/AwesomeQuote.ttf', 'E:/Bots/VideoMaker/sources/fonts/BusterDown.ttf', 'E:/Bots/VideoMaker/sources/fonts/CoffeeJellyUmai.ttf', 'E:/Bots/VideoMaker/sources/fonts/CourierprimecodeRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/EbGaramond08Regular-2mWe.ttf', 'E:/Bots/VideoMaker/sources/fonts/FlowersSunday.otf', 'E:/Bots/VideoMaker/sources/fonts/GreatVibes-Regular.ttf', 'E:/Bots/VideoMaker/sources/fonts/GreenTeaJelly.ttf', 'E:/Bots/VideoMaker/sources/fonts/HeyMarch.ttf', 'E:/Bots/VideoMaker/sources/fonts/Hugamour.ttf', 'E:/Bots/VideoMaker/sources/fonts/LetsCoffee.otf', 'E:/Bots/VideoMaker/sources/fonts/Lightning Script.ttf', 'E:/Bots/VideoMaker/sources/fonts/LikeSlim.ttf', 'E:/Bots/VideoMaker/sources/fonts/LoftygoalsRegular.otf', 'E:/Bots/VideoMaker/sources/fonts/PineappleDays.ttf', 'E:/Bots/VideoMaker/sources/fonts/RecklessBrush.ttf', 'E:/Bots/VideoMaker/sources/fonts/SunnySpellsBasicRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/TakeCoffee.ttf', 'E:/Bots/VideoMaker/sources/fonts/WantCoffee.ttf']
+fonts_sizes = [100, 60, 100, 100, 70, 75, 65, 90, 110, 80, 73, 50, 90, 80, 75, 52, 120, 87, 50, 65]
+fonts_maxcharline = [38, 35, 35, 34, 25, 35, 30, 35, 37, 35, 35, 34, 35, 35, 35, 35, 35, 35, 35, 35]
 run_time_average = 0
 if number_of_videos > 1:
     start_time_total = time.time()
@@ -81,8 +89,34 @@ text2_y = 1300
 
 with open(f'{json_file}', 'r', encoding='utf-8') as f:
     jsonData = json.load(f)
-verses = jsonData['verses']
-refs = jsonData['references']
+verses: str = jsonData['verses']
+refs: str = jsonData['references']
+
+videos_num = list()
+audios_num = list()
+fonts_num = list()
+
+# Get lists of video and audio files in the specified folders
+video_files = [f"{video_folder}/{file}" for file in os.listdir(video_folder) if file.endswith(".mp4")]
+audio_files = [f"{audio_folder}/{file}" for file in os.listdir(audio_folder) if file.endswith(".mp3")]
+random_for_video = random.randint(0, len(video_files)-1)
+random_for_audio = random.randint(0, len(audio_files)-1)
+random_for_font = random.randint(0, len(audio_files)-1)
+for i in range(number_of_videos):
+    videos_num.append((random_for_video + i) % len(video_files))
+    audios_num.append((random_for_audio + i) % len(audio_files))
+    fonts_num.append(i % len(fonts))
+random.shuffle(videos_num)
+random.shuffle(audios_num)
+random.shuffle(fonts_num)
+
+# create a folder for this customer if it doesn't exist
+output_path = f"{output_folder}/{customer_name}"
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
+# Create a folder for the images of the customer if it doesn't exist
+if not os.path.exists(verse_text_image_path):
+    os.makedirs(verse_text_image_path)
 
 for i in range(number_of_videos):
     start_time = time.time()
@@ -90,24 +124,27 @@ for i in range(number_of_videos):
     text_verse = verses[i]
     text_source = refs[i]
 
-    # Get a list of video files in the specified folder
-    video_files = [f"{video_folder}/{file}" for file in os.listdir(video_folder) if file.endswith(".mp4")]
-
     # Choose a random video file from the list
-    video_file = random.choice(video_files)
-    random_video_num = video_file.split('/')
-    random_video_num = random_video_num[len(random_video_num)-1].split('.')
-    random_video_num = random_video_num[0]
+    # video_file = random.choice(video_files)
+    # random_video_num = video_file.split('/')
+    # random_video_num = random_video_num[len(random_video_num)-1].split('.')
+    # random_video_num = random_video_num[0]
+    random_video_num = videos_num[0]
+    del videos_num[0]
+    video_file = video_files[random_video_num]
 
     # Choose a random font from list
-    random_font_num = random.randint(0, len(fonts) - 1)
+    # random_font_num = random.randint(0, len(fonts) - 1)
+    # selected_font = fonts[random_font_num]
+    random_font_num = fonts_num[0]
+    del fonts_num[0]
     selected_font = fonts[random_font_num]
 
-    # Get a list of audio files in the specified folder
-    audio_files = [f"{audio_folder}/{file}" for file in os.listdir(audio_folder) if file.endswith(".mp3")]
-
-    # Choose a random video file from the list
-    random_audio_num = random.randint(0, len(audio_files) - 1)
+    # Choose a random audio file from the list
+    # random_audio_num = random.randint(0, len(audio_files) - 1)
+    # audio_file = audio_files[random_audio_num]
+    random_audio_num = audios_num[0]
+    del audios_num[0]
     audio_file = audio_files[random_audio_num]
 
     # Get the video size
@@ -122,11 +159,6 @@ for i in range(number_of_videos):
 
     # Set the start time of text
     text_start_time = 1
-
-    # create a folder for this customer if it doesn't exist
-    output_path = f"{output_folder}/{customer_name}"
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
 
     # remove chars from versesource for the name
     text_source_for_name = text_source.replace(":", "").rstrip('\n')
@@ -149,6 +181,7 @@ for i in range(number_of_videos):
                       f'[v2][3:v]overlay=(W-w)/2:{video_height}/4:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
                       f'-t {video_duration} -map "[v3]" -map 1:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
 
+    output_path = f"{output_folder}/{customer_name}"
     # # WITHOUT LOGO
     # ffmpeg_command = (f'ffmpeg -y -i "{audio_file}" '
     #                   f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
