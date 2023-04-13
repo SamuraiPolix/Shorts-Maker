@@ -2,7 +2,7 @@ import ffmpeg
 from Fonts import Fonts
 
 # Define the paths and values to everything
-number_of_videos = 74
+number_of_videos = 1
 video_folder = "E:/Bots/VideoMaker/videos"
 audio_folder = "E:/Bots/VideoMaker/audio"
 json_file = "E:/Bots/VideoMaker/sources/love_data.json"

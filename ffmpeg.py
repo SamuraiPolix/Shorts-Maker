@@ -6,9 +6,10 @@ import time
 import json_handler
 import verse_handler
 import Fonts
+import cv2
 
 
-def create_dirs(output_folder, customer_name):
+def create_dirs(output_folder, customer_name, posts=True):
     # create a folder for this customer if it doesn't exist
     output_path = f"{output_folder}/{customer_name}"
     if not os.path.exists(output_path):
@@ -16,10 +17,13 @@ def create_dirs(output_folder, customer_name):
     # Create folder inside for images
     if not os.path.exists(f"{output_path}/verse_images"):
         os.makedirs(f"{output_path}/verse_images")
+    if posts and not os.path.exists(f"{output_path}/post_images"):
+        os.makedirs(f"{output_path}/post_images")
     return output_path
 
 
-def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folder, text_source_font, image_file, customer_name, number_of_videos, fonts: Fonts):
+def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folder, text_source_font, image_file,
+                  customer_name, number_of_videos, fonts: Fonts, posts=True):
     run_time_average = 0
     if number_of_videos > 1:
         start_time_total = time.time()
@@ -35,9 +39,9 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
     # Get lists of video and audio files in the specified folders
     video_files = [f"{video_folder}/{file}" for file in os.listdir(video_folder) if file.endswith(".mp4")]
     audio_files = [f"{audio_folder}/{file}" for file in os.listdir(audio_folder) if file.endswith(".mp3")]
-    random_for_video = random.randint(0, len(video_files)-1)
-    random_for_audio = random.randint(0, len(audio_files)-1)
-    random_for_font = random.randint(0, len(fonts.fonts_path)-1)
+    random_for_video = random.randint(0, len(video_files) - 1)
+    random_for_audio = random.randint(0, len(audio_files) - 1)
+    random_for_font = random.randint(0, len(fonts.fonts_path) - 1)
     for i in range(number_of_videos):
         videos_num.append((random_for_video + i) % len(video_files))
         audios_num.append((random_for_audio + i) % len(audio_files))
@@ -47,7 +51,7 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
     random.shuffle(fonts_num)
 
     # Creating folder for customer
-    output_path = create_dirs(output_folder, customer_name)
+    output_path = create_dirs(output_folder, customer_name, posts)
 
     for i in range(number_of_videos):
         start_time = time.time()
@@ -79,11 +83,12 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
 
         file_name = f"/{i}-{text_source_for_name}_{random_video_num}_{random_audio_num}_{random_font_num}.mp4"
 
-        create_video(text_verse=text_verse, text_source=text_source, text_source_font=text_source_font, text_source_for_image=text_source_for_image,
+        create_video(text_verse=text_verse, text_source=text_source, text_source_font=text_source_font,
+                     text_source_for_image=text_source_for_image,
                      video_file=video_file, audio_file=audio_file, image_file=image_file,
                      font_file=font_file, font_size=font_size, font_chars=font_chars,
+                     posts=posts,
                      output_path=output_path, file_name=file_name)
-
 
         end_time = time.time()
         run_time = end_time - start_time
@@ -96,10 +101,12 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
         run_time_total = end_time_total - start_time_total
         print(f"\n\033[0;32mDone making {number_of_videos} videos for {customer_name}!"
               f"\nTotal run time:", round(run_time_total, 2), "seconds!"
-              f"\nAverage run time:", round(run_time_average, 2), "seconds = ", round(run_time_average/60, 2), " minutes! \033[0m")
+                                                              f"\nAverage run time:", round(run_time_average, 2),
+              "seconds = ", round(run_time_average / 60, 2), " minutes! \033[0m")
 
 
-def create_video(text_verse, text_source, text_source_font, text_source_for_image, video_file, audio_file, image_file, font_file, font_size, font_chars, output_path, file_name):
+def create_video(text_verse, text_source, text_source_font, text_source_for_image, video_file, audio_file, image_file,
+                 font_file, font_size, font_chars, output_path, file_name, posts=True):
     # Coordinates of logo image and text2 clips
     image_y = 1600
     text2_y = 1300
@@ -151,5 +158,43 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     # Run FFMPEG command
     subprocess.call(ffmpeg_command, shell=True)
 
+    # if posts:
+    #     verse_handler.create_post_images(video_path=output_path, output_folder=output_path.strip(f"/{file_name}"),
+    #                                      verse_image_path=created_verse_image, text_source=text_source)
 
 
+def create_post_images(video_path: str, verse_image_path, text_source, output_folder):
+    # Open the video file
+    video = cv2.VideoCapture(video_path)
+
+    # Get the frame rate of the video
+    fps = int(video.get(cv2.CAP_PROP_FPS))
+
+    # Set the time in seconds to extract a frame from
+    time_in_seconds = 2
+
+    # Calculate the frame index to extract
+    frame_index = time_in_seconds * fps
+
+    # Set the output image size
+    output_size = (1080, 1080)
+
+    # Loop through the video frames until we reach the desired frame
+    for i in range(frame_index):
+        ret, frame = video.read()
+
+    # Crop the middle square of the frame
+    height, width, channels = frame.shape
+    y = 325
+    cropped_frame = frame[y:y + 1440, 0:width]
+
+    # Resize the cropped frame to the output size
+    # resized_frame = cv2.resize(cropped_frame, output_size)
+
+    # Save the frame as an image
+    output_name = video_path.split('/')
+    output_name = output_name[len(output_name) - 1].strip(".mp4")
+    cv2.imwrite(f"{output_folder}/post_images/{output_name}.jpg", cropped_frame)
+
+    # Release the video file
+    video.release()

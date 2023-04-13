@@ -1,5 +1,7 @@
 import os
 from string import ascii_letters
+
+import cv2
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import textwrap
 
@@ -48,6 +50,64 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
     combined.save(f"{path_to_check}")
     # combined.show()
     return f"{path_to_check}"
+
+
+def create_post_images(video_path: str, verse_image_path, text_source, output_folder):
+    # Open the video file
+    video = cv2.VideoCapture(video_path)
+
+    # Get the frame rate of the video
+    fps = int(video.get(cv2.CAP_PROP_FPS))
+
+    # Set the time in seconds to extract a frame from
+    time_in_seconds = 2
+
+    # Calculate the frame index to extract
+    frame_index = time_in_seconds * fps
+
+    # Set the output image size
+    output_size = (1080, 1080)
+
+    # Loop through the video frames until we reach the desired frame
+    for i in range(frame_index):
+        ret, frame = video.read()
+
+    # Crop the middle square of the frame
+    height, width, channels = frame.shape
+    y = int((height - width) / 2)
+    cropped_frame = frame[y:y+1080, 0:width]
+
+    background = Image.fromarray(cropped_frame)
+    verse = Image.open(verse_image_path)
+
+    combined = Image.blend(background, verse, 1)
+
+    # Create a drawing object
+    draw = ImageDraw.Draw(combined)
+
+    # Define the text to add and the font to use
+    text = 'Hello, World!'
+    font = ImageFont.truetype(r"C\:/Users/Samurai/AppData/Local/Microsoft/Windows/Fonts/Aloevera-OVoWO.ttf", size=36)
+
+    # Determine the position to place the text
+    text_width, text_height = draw.textsize(text, font=font)
+    x = (combined.width - text_width) / 2
+    y = 1300
+
+    # Add the text to the image
+    draw.text((x, y), text, font=font, fill=(255, 255, 255))
+
+    output_name = video_path.split('/')
+    output_name = output_name[len(output_name) - 1].strip(".mp4")
+    combined.save(f"{output_folder}/post_images/{output_name}.jpg")
+
+    # Save the frame as an image
+    # output_name = video_path.split('/')
+    # output_name = output_name[len(output_name) - 1].strip(".mp4")
+    # cv2.imwrite(f"{output_folder}/post_images/{output_name}.jpg", cropped_frame)
+    #
+    # Release the video file
+    video.release()
 
 
 def fix_fonts(text, font):
