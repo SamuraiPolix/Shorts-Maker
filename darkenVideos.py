@@ -18,7 +18,7 @@ def generate_darken_video(video_file, output_path):
 
 # A defined function to darken the frames
 def darken(frame):
-    return frame * 0.8
+    return frame * DARK
 
 
 def generate_darken_videos(video_folder, output_folder):
@@ -32,6 +32,14 @@ def generate_darken_videos(video_folder, output_folder):
         generate_darken_video(video_file, f"{output_folder}/{video_num}.mp4")
 
 
-video_folder = "E:/Bots/VideoMaker/videos"
-output_folder = "E:/Bots/VideoMaker/videos/darken 20%"
+video_folder = "E:/Bots/VideoMaker/videos/original/new ones"
+output_folder = "E:/Bots/VideoMaker/videos"
+DARK = 0.8
 generate_darken_videos(video_folder, output_folder)
+# Specific video
+# video_file = "E:/Bots/VideoMaker/videos/original/7.mp4"
+# output_path = "E:/Bots/VideoMaker/videos/darken 40%/7.mp4"
+# generate_darken_video(video_file, output_path)
+
+
+
