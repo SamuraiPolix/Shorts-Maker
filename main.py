@@ -2,7 +2,7 @@ import ffmpeg
 from Fonts import Fonts
 
 # Define the paths and values to everything
-number_of_videos = 1
+number_of_videos = 3
 video_folder = "E:/Bots/VideoMaker/videos"
 # video_folder = "E:/Bots/VideoMaker/videos/caribbean/darken0.4"
 audio_folder = "E:/Bots/VideoMaker/audio"

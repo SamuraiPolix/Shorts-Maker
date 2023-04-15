@@ -64,6 +64,7 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
         random_video_num = videos_num[0]
         del videos_num[0]
         video_file = video_files[random_video_num]
+        # video_file = f"{video_folder}/30.mp4"
 
         # Choose a random font from list
         random_font_num = fonts_num[0]
