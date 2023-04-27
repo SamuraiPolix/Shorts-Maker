@@ -24,13 +24,16 @@ def create_dirs(output_folder, customer_name, posts=True):
 
 def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folder, text_source_font, image_file,
                   customer_name, number_of_videos, fonts: Fonts, posts=True):
-    run_time_average = 0
-    if number_of_videos > 1:
-        start_time_total = time.time()
 
     json_data = json_handler.get_data(json_file)
     verses: str = json_data[0]
     refs: str = json_data[1]
+
+    if number_of_videos == -1:
+        number_of_videos = len(verses)-1
+    run_time_average = 0
+    if number_of_videos > 1:
+        start_time_total = time.time()
 
     videos_num = list()
     audios_num = list()
@@ -52,6 +55,11 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
 
     # Creating folder for customer
     output_path = create_dirs(output_folder, customer_name, posts)
+
+    # Data for spreadsheet
+    spreadsheet_col1 = list()
+    spreadsheet_col2 = list()
+    spreadsheet_col3 = list()
 
     for i in range(number_of_videos):
         start_time = time.time()
@@ -91,10 +99,17 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
                      posts=posts,
                      output_path=output_path, file_name=file_name)
 
+        spreadsheet_col1.append(file_name.strip("/"))
+        spreadsheet_col2.append(text_source)
+        spreadsheet_col3.append(text_verse)
+
         end_time = time.time()
         run_time = end_time - start_time
         run_time_average += run_time
         print(f"\033[0;34m DONE #{i}, Run time:", round(run_time, 2), "seconds! \033[0m", output_path)
+
+    # add file to spreadsheet
+    verse_handler.add_sheets(video_names=spreadsheet_col1, customer_name=customer_name, output_path=output_path, refs=spreadsheet_col2, verses=spreadsheet_col3)
 
     if number_of_videos > 1:
         run_time_average /= number_of_videos
@@ -108,7 +123,7 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
 def create_video(text_verse, text_source, text_source_font, text_source_for_image, video_file, audio_file, image_file,
                  font_file, font_size, font_chars, output_path, file_name, posts=True):
     # Coordinates of logo image and text2 clips
-    image_y = 1600
+    image_y = 1600-75
     text2_y = 1300
 
     # Get the video size
@@ -134,7 +149,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     # fix bug that ':' and beyond wasn't showing on screen
     text_source = text_source.replace(':', '\:')
     output_path += f"/{file_name}"
-    # FFMPEG command to overlay images and text onto input video
+    # # FFMPEG command to overlay images and text onto input video
     ffmpeg_command = (f'ffmpeg -y -loop 1 -i "{image_file}" -i "{audio_file}" '
                       f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
                       f'"[2:v][0:v]overlay=(W-w)/2:{image_y}[v1]; '

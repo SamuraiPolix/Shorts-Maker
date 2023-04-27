@@ -1,9 +1,12 @@
+import csv
 import os
 from string import ascii_letters
 
 import cv2
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import textwrap
+
+import json_handler
 
 
 def create_image(text, font_path, font_size, max_char_count, image_size, save_path, text_source):
@@ -115,3 +118,11 @@ def fix_fonts(text, font):
     if (font.__contains__("FlowersSunday")):
         return text.replace("'", "")
     return text
+
+
+def add_sheets(video_names: str, output_path: str, customer_name: str, refs: str, verses: str):
+    with open(f'{output_path}/{customer_name}.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["File Name", "Reference", "Verse"])
+        for i in range(len(video_names)):
+            writer.writerow([video_names[i], refs[i], verses[i]])
