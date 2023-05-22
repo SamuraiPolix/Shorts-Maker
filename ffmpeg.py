@@ -116,7 +116,7 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
         end_time_total = time.time()
         run_time_total = end_time_total - start_time_total
         print(f"\n\033[0;32mDone making {number_of_videos} videos for {customer_name}!"
-              f"\nTotal run time:", round(run_time_total, 2), "seconds = ", round(run_time_average / 60, 2), " minutes!",
+              f"\nTotal run time:", round(run_time_total, 2), "seconds = ", round(run_time_total / 60, 2), " minutes!",
               f"\nAverage run time:", round(run_time_average, 2), "seconds! \033[0m")
 
 
