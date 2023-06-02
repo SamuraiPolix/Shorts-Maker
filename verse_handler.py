@@ -114,6 +114,7 @@ def create_post_images(video_path: str, verse_image_path, text_source, output_fo
 
 
 def fix_fonts(text, font):
+    text = text.replace('—', '-')
     # Font 6 can't display '
     if (font.__contains__("FlowersSunday")):
         return text.replace("'", "")
