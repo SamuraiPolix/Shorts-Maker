@@ -123,7 +123,10 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
 def create_video(text_verse, text_source, text_source_font, text_source_for_image, video_file, audio_file, image_file,
                  font_file, font_size, font_chars, output_path, file_name, posts=True):
     # Coordinates of logo image and text2 clips
-    image_y = 1600-75
+    # This VVV is for the small logo from the beginning
+    # image_y = 1600-75
+    # NEW logo whole screen:
+    image_y = 0
     text2_y = 1300
 
     # Get the video size
