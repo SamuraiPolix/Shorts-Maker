@@ -127,7 +127,11 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     # image_y = 1600-75
     # NEW logo whole screen:
     image_y = 0
-    text2_y = 1300
+    ############ image_text_source_y = 1920/4          # 1920/4 = 480
+    ############ text2_y = 1300
+    # For new customer:
+    text2_y = 750
+    image_text_source_y = text2_y + 75 + (1920/2)
 
     # Get the video size
     result = subprocess.run(
@@ -160,7 +164,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
                       # f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
                       f'[v1]drawtext=fontfile=\'{text_source_font}\':text=\'{text_source}\':x=(w-text_w)/2:y={text2_y}:fontsize=42:fontcolor=white:'
                       f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
-                      f'[v2][3:v]overlay=(W-w)/2:{video_height}/4:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
+                      f'[v2][3:v]overlay=(W-w)/2:{image_text_source_y}/4:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
                       f'-t {video_duration} -map "[v3]" -map 1:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
 
     # WITHOUT LOGO
