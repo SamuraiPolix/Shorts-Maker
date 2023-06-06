@@ -1,20 +1,24 @@
+import os
+
 import ffmpeg
 import verse_handler
 from Fonts import Fonts
 
 # Define the paths and values to everything
-number_of_videos = 1
-video_folder = "E:/Bots/VideoMaker/videos"
+number_of_videos = 5
+project_dir = os.getcwd().replace("\\", "/")
+
+video_folder = f"{project_dir}/videos"
 # video_folder = "E:/Bots/VideoMaker/videos/caribbean/darken0.4"
-audio_folder = "E:/Bots/VideoMaker/audio"
-json_file = "E:/Bots/VideoMaker/sources/verses_data/love_data_KJV.json"
-fonts_dir = "E:/Bots/VideoMaker/sources/fonts"
-output_folder = "E:/Bots/VideoMaker/customers"
-text_source_font = r"E\:/Bots/VideoMaker/sources/MouldyCheeseRegular-WyMWG.ttf"
-image_file = "E:/Bots/VideoMaker/sources/logoNotSqueezed.png"
-customer_name = "nigelwilliam646_not_squeezed1"
-verse_text_image_path = f"E:/Bots/VideoMaker/verse_images/{customer_name}"
-fonts_paths = ['E:/Bots/VideoMaker/sources/fonts/CoffeeJellyUmai.ttf', 'E:/Bots/VideoMaker/sources/fonts/CourierprimecodeRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/EbGaramond08Regular-2mWe.ttf', 'E:/Bots/VideoMaker/sources/fonts/FlowersSunday.otf', 'E:/Bots/VideoMaker/sources/fonts/GreenTeaJelly.ttf', 'E:/Bots/VideoMaker/sources/fonts/HeyMarch.ttf', 'E:/Bots/VideoMaker/sources/fonts/Hugamour.ttf', 'E:/Bots/VideoMaker/sources/fonts/LetsCoffee.otf', 'E:/Bots/VideoMaker/sources/fonts/Lightning Script.ttf', 'E:/Bots/VideoMaker/sources/fonts/LikeSlim.ttf', 'E:/Bots/VideoMaker/sources/fonts/PineappleDays.ttf', 'E:/Bots/VideoMaker/sources/fonts/SunnySpellsBasicRegular.ttf', 'E:/Bots/VideoMaker/sources/fonts/TakeCoffee.ttf', 'E:/Bots/VideoMaker/sources/fonts/WantCoffee.ttf']
+audio_folder = f"{project_dir}/audio"
+json_file = f"{project_dir}/sources/verses_data/love_data_KJV.json"
+fonts_dir = f"{project_dir}/sources/fonts"
+output_folder = f"{project_dir}/customers"
+text_source_font = f'{project_dir}/sources/MouldyCheeseRegular-WyMWG.ttf'.replace(":/", "\:/")
+image_file = f"{project_dir}/sources/logo.png"
+customer_name = "nigelwilliam646_not_squeezed2"
+verse_text_image_path = f"{project_dir}/verse_images/{customer_name}"
+fonts_paths = [f'{project_dir}/sources/fonts/CoffeeJellyUmai.ttf', f'{project_dir}/sources/fonts/CourierprimecodeRegular.ttf', f'{project_dir}/sources/fonts/EbGaramond08Regular-2mWe.ttf', f'{project_dir}/sources/fonts/FlowersSunday.otf', f'{project_dir}/sources/fonts/GreenTeaJelly.ttf', f'{project_dir}/sources/fonts/HeyMarch.ttf', f'{project_dir}/sources/fonts/Hugamour.ttf', f'{project_dir}/sources/fonts/LetsCoffee.otf', f'{project_dir}/sources/fonts/Lightning Script.ttf', f'{project_dir}/sources/fonts/LikeSlim.ttf', f'{project_dir}/sources/fonts/PineappleDays.ttf', f'{project_dir}/sources/fonts/SunnySpellsBasicRegular.ttf', f'{project_dir}/sources/fonts/TakeCoffee.ttf', f'{project_dir}/sources/fonts/WantCoffee.ttf']
 fonts_sizes = [95, 70, 70, 65, 85, 75, 73, 50, 85, 75, 52, 87, 50, 65]
 fonts_maxcharsline = [34, 25, 35, 30, 45, 35, 32, 34, 35, 35, 35, 32, 35, 35]
 # project_dir = os.getcwd()

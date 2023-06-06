@@ -130,8 +130,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     ############ image_text_source_y = 1920/4          # 1920/4 = 480
     ############ text2_y = 1300
     # For new customer:
-    text2_y = 750
-    image_text_source_y = text2_y + 75 + (1920/2)
+    image_text_source_y = 750
 
     # Get the video size
     result = subprocess.run(
@@ -149,9 +148,15 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     text_start_time = 1
 
     # Create image of verse
-    created_verse_image = verse_handler.create_image(text_verse, font_file, font_size, font_chars,
+    created_verse_image_data = verse_handler.create_image(text_verse, font_file, font_size, font_chars,
                                                      (int(video_width), int(video_height / 2)), output_path,
                                                      text_source_for_image)
+    created_verse_image = created_verse_image_data[0]
+    verse_height = created_verse_image_data[1]
+
+    text2_y: int = image_text_source_y + verse_height + 75
+
+    print(f"{image_text_source_y}, {text2_y}")
 
     # fix bug that ':' and beyond wasn't showing on screen
     text_source = text_source.replace(':', '\:')
@@ -164,7 +169,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
                       # f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
                       f'[v1]drawtext=fontfile=\'{text_source_font}\':text=\'{text_source}\':x=(w-text_w)/2:y={text2_y}:fontsize=42:fontcolor=white:'
                       f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
-                      f'[v2][3:v]overlay=(W-w)/2:{image_text_source_y}/4:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
+                      f'[v2][3:v]overlay=(W-w)/2:{image_text_source_y}:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
                       f'-t {video_duration} -map "[v3]" -map 1:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
 
     # WITHOUT LOGO
