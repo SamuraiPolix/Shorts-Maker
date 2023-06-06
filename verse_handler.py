@@ -17,6 +17,7 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
 
     # Load selected font
     font = ImageFont.truetype(font=f'{font_path}', size=font_size)
+    # font_ref = ImageFont.truetype(font='C:/Bots/ShortsMaker/sources/MouldyCheeseRegular-WyMWG.ttf', size=42)
 
     # Create DrawText object
     draw = ImageDraw.Draw(im=img)
@@ -42,6 +43,9 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
               align='center')
     # combine shadow and main
     combined = Image.alpha_composite(shadow_image, img)
+    # Crop to fit text
+    final = combined.crop(combined.getbbox())
+    print(combined.getbbox()[3]-combined.getbbox()[1])
 
     # check if image of this source (bible reference) exists already
     path_to_check = f"{save_path}/{text_source}.png"
@@ -50,9 +54,9 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
         path_to_check = f"{save_path}/{text_source}-{i}.png"
         i += 1
     # Save the image
-    combined.save(f"{path_to_check}")
+    final.save(f"{path_to_check}")
     # combined.show()
-    return f"{path_to_check}"
+    return f"{path_to_check}", combined.getbbox()[3]-combined.getbbox()[1]
 
 
 def create_post_images(video_path: str, verse_image_path, text_source, output_folder):
