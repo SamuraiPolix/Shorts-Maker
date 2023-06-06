@@ -130,7 +130,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     ############ image_text_source_y = 1920/4          # 1920/4 = 480
     ############ text2_y = 1300
     # For new customer:
-    image_text_source_y = 750
+    image_text_source_y = 850
 
     # Get the video size
     result = subprocess.run(
