@@ -130,7 +130,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     ############ image_text_source_y = 1920/4          # 1920/4 = 480
     ############ text2_y = 1300
     # For new customer:
-    image_text_source_y = 850
+    image_text_source_y = 800
 
     # Get the video size
     result = subprocess.run(
@@ -156,7 +156,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
 
     text2_y: int = image_text_source_y + verse_height + 75
 
-    print(f"{image_text_source_y}, {text2_y}")
+    # print(f"{image_text_source_y}, {text2_y}")
 
     # fix bug that ':' and beyond wasn't showing on screen
     text_source = text_source.replace(':', '\:')

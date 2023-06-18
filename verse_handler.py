@@ -45,7 +45,7 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
     combined = Image.alpha_composite(shadow_image, img)
     # Crop to fit text
     final = combined.crop(combined.getbbox())
-    print(combined.getbbox()[3]-combined.getbbox()[1])
+    # print(combined.getbbox()[3]-combined.getbbox()[1])
 
     # check if image of this source (bible reference) exists already
     path_to_check = f"{save_path}/{text_source}.png"
