@@ -1,4 +1,5 @@
 import os
+import pickle
 import random
 import subprocess
 import re
@@ -24,13 +25,12 @@ def create_dirs(output_folder, customer_name, posts=True):
 
 def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folder, text_source_font, image_file,
                   customer_name, number_of_videos, fonts: Fonts, posts=True):
-
     json_data = json_handler.get_data(json_file)
     verses: str = json_data[0]
     refs: str = json_data[1]
 
     if number_of_videos == -1:
-        number_of_videos = len(verses)-1
+        number_of_videos = len(verses) - 1
     run_time_average = 0
     if number_of_videos > 1:
         start_time_total = time.time()
@@ -60,6 +60,9 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
     spreadsheet_col1 = list()
     spreadsheet_col2 = list()
     spreadsheet_col3 = list()
+
+    estimated_runtime = get_avg_runtime('runtime.pk') * number_of_videos
+    print(f"Estimated run time: " + estimated_runtime / 60 + " minutes = " + estimated_runtime / 60 / 60 + " hours.")
 
     for i in range(number_of_videos):
         start_time = time.time()
@@ -109,10 +112,12 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
         print(f"\033[0;34m DONE #{i}, Run time:", round(run_time, 2), "seconds! \033[0m", output_path)
 
     # add file to spreadsheet
-    verse_handler.add_sheets(video_names=spreadsheet_col1, customer_name=customer_name, output_path=output_path, refs=spreadsheet_col2, verses=spreadsheet_col3)
+    verse_handler.add_sheets(video_names=spreadsheet_col1, customer_name=customer_name, output_path=output_path,
+                             refs=spreadsheet_col2, verses=spreadsheet_col3)
 
     if number_of_videos > 1:
         run_time_average /= number_of_videos
+        update_avg_runtime(filename='runtime.pk', curr_runtime=run_time_average)
         end_time_total = time.time()
         run_time_total = end_time_total - start_time_total
         print(f"\n\033[0;32mDone making {number_of_videos} videos for {customer_name}!"
@@ -149,8 +154,8 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
 
     # Create image of verse
     created_verse_image_data = verse_handler.create_image(text_verse, font_file, font_size, font_chars,
-                                                     (int(video_width), int(video_height / 2)), output_path,
-                                                     text_source_for_image)
+                                                          (int(video_width), int(video_height / 2)), output_path,
+                                                          text_source_for_image)
     created_verse_image = created_verse_image_data[0]
     verse_height = created_verse_image_data[1]
 
@@ -225,3 +230,18 @@ def create_post_images(video_path: str, verse_image_path, text_source, output_fo
 
     # Release the video file
     video.release()
+
+
+def get_avg_runtime(filename: str):
+    with open(filename, 'rb') as fi:
+        return pickle.load(fi)
+
+
+def update_avg_runtime(curr_runtime: float, filename: str):
+    old_runtime = get_avg_runtime(filename)
+
+    new_runtime = (old_runtime + curr_runtime) / 2
+
+    with open(filename, 'wb') as fi:
+        # dump your data into the file
+        pickle.dump(new_runtime, fi)

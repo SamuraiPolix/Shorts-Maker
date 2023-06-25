@@ -5,7 +5,6 @@ from string import ascii_letters
 import cv2
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import textwrap
-
 import json_handler
 
 
