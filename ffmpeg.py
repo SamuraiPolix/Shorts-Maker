@@ -3,11 +3,13 @@ import pickle
 import random
 import subprocess
 import re
+import sys
 import time
 import json_handler
 import verse_handler
 import Fonts
 import cv2
+
 
 
 def create_dirs(output_folder, customer_name, posts=True):
@@ -61,8 +63,13 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
     spreadsheet_col2 = list()
     spreadsheet_col3 = list()
 
-    estimated_runtime = get_avg_runtime('runtime.pk') * number_of_videos
-    print(f"Estimated run time: " + estimated_runtime / 60 + " minutes = " + estimated_runtime / 60 / 60 + " hours.")
+    estimated_runtime = round(get_avg_runtime('runtime.pk') * number_of_videos, 2)
+    # seconds
+    print(f"\033[0;32mEstimated run time: ", round(estimated_runtime, 2), " seconds\033[0m")
+    if round(estimated_runtime, 2) > 60:                # minutes
+        print("\033[0;32m = ", round(estimated_runtime/60, 2), " minutes\033[0m")
+    if round(estimated_runtime/60, 2) > 60:             # hours
+        print("\033[0;32m = ", round((estimated_runtime / 60) / 60, 2), " hours!\033[0m")
 
     for i in range(number_of_videos):
         start_time = time.time()
@@ -167,7 +174,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     text_source = text_source.replace(':', '\:')
     output_path += f"/{file_name}"
     # # FFMPEG command to overlay images and text onto input video
-    ffmpeg_command = (f'ffmpeg -y -loop 1 -i "{image_file}" -i "{audio_file}" '
+    ffmpeg_command = (f'ffmpeg -loglevel error -stats -y -loop 1 -i "{image_file}" -i "{audio_file}" '
                       f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
                       f'"[2:v][0:v]overlay=(W-w)/2:{image_y}[v1]; '
                       # f'[v1]drawtext=fontfile={selected_font}:text=\'{text_verse}\':x=(w-text_w)/2:y=(h-text_h)/2:fontsize=60:fontcolor=white:'
@@ -176,7 +183,6 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
                       f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
                       f'[v2][3:v]overlay=(W-w)/2:{image_text_source_y}:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
                       f'-t {video_duration} -map "[v3]" -map 1:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
-
     # WITHOUT LOGO
     # ffmpeg_command = (f'ffmpeg -y -i "{audio_file}" '
     #                   f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
@@ -188,9 +194,15 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     #                   f'-t {video_duration} -map "[v2]" -map 0:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
 
     # Run FFMPEG command
-    subprocess.call(ffmpeg_command, shell=True)
+    try:
+        subprocess.check_call(ffmpeg_command, shell=True)
+    except subprocess.CalledProcessError as e:
+        # Handle the exception here
+        print(f"An error occurred: {e}")
+        sys.exit()
 
-    # if posts:
+
+# if posts:
     #     verse_handler.create_post_images(video_path=output_path, output_folder=output_path.strip(f"/{file_name}"),
     #                                      verse_image_path=created_verse_image, text_source=text_source)
 
