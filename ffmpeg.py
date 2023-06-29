@@ -168,6 +168,12 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
 
     text2_y: int = image_text_source_y + verse_height + 75
 
+    # If ref text leaps to logo, move it to 1200, and adjust the verse accordingly
+    if (text2_y > 1200):
+        diff = text2_y - 1200
+        text2_y = 1200
+        image_text_source_y -= diff
+
     # print(f"{image_text_source_y}, {text2_y}")
 
     # fix bug that ':' and beyond wasn't showing on screen
