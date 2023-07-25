@@ -1,5 +1,7 @@
 import csv
 import os
+import subprocess
+import sys
 from string import ascii_letters
 
 import cv2
@@ -8,7 +10,9 @@ import textwrap
 import json_handler
 
 
-def create_image(text, font_path, font_size, max_char_count, image_size, save_path, text_source):
+def create_image(text, font_path, font_size, max_char_count, image_size, save_path, text_source, text_color):
+    if text_color == None:
+        text_color = (255, 255, 255, 255)
     save_path += "/verse_images"
     text = fix_fonts(text, font_path)
     # Open a blank image
@@ -38,7 +42,7 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
     shadow_draw.text(xy=(img.size[0] / 2 - 1, img.size[1] / 2 + 4), text=new_text, font=font, fill=(0, 0, 0, 80), anchor='mm',
               align='center')
     # Add main text to the image
-    draw.text(xy=(img.size[0] / 2, img.size[1] / 2), text=new_text, font=font, fill=(255, 255, 255, 255), anchor='mm',
+    draw.text(xy=(img.size[0] / 2, img.size[1] / 2), text=new_text, font=font, fill=text_color, anchor='mm',
               align='center')
     # combine shadow and main
     combined = Image.alpha_composite(shadow_image, img)
@@ -58,62 +62,60 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
     return f"{path_to_check}", combined.getbbox()[3]-combined.getbbox()[1]
 
 
-def create_post_images(video_path: str, verse_image_path, text_source, output_folder):
-    # Open the video file
-    video = cv2.VideoCapture(video_path)
+def create_post_images(video_path: str, output_folder):
+    video_name = video_path.split("/")
+    video_name = video_name[len(video_name)-1].strip(".mp4")
+    temp_image =  f"{output_folder}/TEMP_{video_name}.jpg"
+    output_image = f"{output_folder}/{video_name}.jpg"
+    ffmpeg_command = (f'ffmpeg -ss 00:00:03.00 -i {video_path} -frames:v 1 {temp_image}')
 
-    # Get the frame rate of the video
-    fps = int(video.get(cv2.CAP_PROP_FPS))
+    # Run FFMPEG command
+    try:
+        subprocess.check_call(ffmpeg_command, shell=True)
+    except subprocess.CalledProcessError as e:
+        # Handle the exception here
+        print(f"An error occurred: {e}")
+        sys.exit()
 
-    # Set the time in seconds to extract a frame from
-    time_in_seconds = 2
+    cut_image(temp_image, output_image)
+    os.remove(temp_image)
 
-    # Calculate the frame index to extract
-    frame_index = time_in_seconds * fps
 
-    # Set the output image size
-    output_size = (1080, 1080)
+def cut_image(image_file, output_file):
+    # Set desired ratio
+    desired_ratio = 1080 / 1080
 
-    # Loop through the video frames until we reach the desired frame
-    for i in range(frame_index):
-        ret, frame = video.read()
+    if image_file.endswith('.jpg') or image_file.endswith('.jpeg') or image_file.endswith('.png'):
+        # Open the image
+        img = Image.open(image_file)
 
-    # Crop the middle square of the frame
-    height, width, channels = frame.shape
-    y = int((height - width) / 2)
-    cropped_frame = frame[y:y+1080, 0:width]
+        # Get image dimensions
+        width, height = img.size
+        ratio = width / height
 
-    background = Image.fromarray(cropped_frame)
-    verse = Image.open(verse_image_path)
+        # Calculate new dimensions
+        if ratio > desired_ratio:
+            # Image is wider than desired ratio, crop width
+            new_width = round(height * desired_ratio)
+            new_height = height
+        else:
+            # Image is taller than desired ratio, crop height
+            new_width = width
+            new_height = round(width / desired_ratio)
 
-    combined = Image.blend(background, verse, 1)
+        # Crop the image in the center
+        left = (width - new_width) / 2
+        top = (height - new_height) / 2
+        right = left + new_width
+        bottom = top + new_height
+        img = img.crop((left, top, right, bottom))
 
-    # Create a drawing object
-    draw = ImageDraw.Draw(combined)
+        # Resize the image if necessary
+        if img.size != (1080, 1080):
+            img = img.resize((1080, 1080))
 
-    # Define the text to add and the font to use
-    text = 'Hello, World!'
-    font = ImageFont.truetype(r"C\:/Users/Samurai/AppData/Local/Microsoft/Windows/Fonts/Aloevera-OVoWO.ttf", size=36)
-
-    # Determine the position to place the text
-    text_width, text_height = draw.textsize(text, font=font)
-    x = (combined.width - text_width) / 2
-    y = 1300
-
-    # Add the text to the image
-    draw.text((x, y), text, font=font, fill=(255, 255, 255))
-
-    output_name = video_path.split('/')
-    output_name = output_name[len(output_name) - 1].strip(".mp4")
-    combined.save(f"{output_folder}/post_images/{output_name}.jpg")
-
-    # Save the frame as an image
-    # output_name = video_path.split('/')
-    # output_name = output_name[len(output_name) - 1].strip(".mp4")
-    # cv2.imwrite(f"{output_folder}/post_images/{output_name}.jpg", cropped_frame)
-    #
-    # Release the video file
-    video.release()
+        # Save the image to output folder
+        img.save(output_file)
 
 
 def fix_fonts(text, font):
@@ -130,3 +132,29 @@ def add_sheets(video_names: str, output_path: str, customer_name: str, refs: str
         writer.writerow(["File Name", "Reference", "Verse"])
         for i in range(len(video_names)):
             writer.writerow([video_names[i], refs[i], verses[i]])
+
+
+def rename_videos(video_folder, csv_file):
+    with open(csv_file, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            file_name = row['File Name']
+            reference = row['Reference']
+            verse = row['Verse']
+            video_path = f"{video_folder}/{file_name}"
+            new_file_name = get_new_file_name(reference)
+            # new_video_path = os.path.join(video_folder, new_file_name)
+            new_video_path = f"{video_folder}/{new_file_name}"
+            try:
+                os.rename(video_path, new_video_path)
+            except:
+                print(f"Could rename '{file_name}' to '{new_file_name}'")
+            # print(f"Renamed '{file_name}' to '{new_file_name}'")
+
+
+def get_new_file_name(reference):
+    # Remove any characters that are not allowed in filenames
+    new_name: str = reference.replace(':', '_').strip("(ESV)").rstrip()
+    new_name = new_name[:100]  # Limit the filename length if needed
+    new_name += '.mp4'
+    return new_name
