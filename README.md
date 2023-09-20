@@ -2,7 +2,7 @@
 <a href = "https://www.paypal.com/donate/?hosted_button_id=5JK8CUWFUU9B6">![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)</a>
 
 # Quote Video Maker for Shorts/Reels/TikTok
-<h3>This script creates high-quality vertical quotes videos (1920x1080) in about 15sec per video!</h3>
+<h3>This script creates high-quality vertical quotes videos (1920x1080) in about 15secs per video!</h3>
 
 https://github.com/SamuraiPolix/ShortsMaker/assets/52662032/bf84a603-f397-4d3c-9d2a-4b2a95da0a8f
 
