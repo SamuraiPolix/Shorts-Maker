@@ -3,10 +3,12 @@
 
 # Quote Video Maker for Shorts/Reels/TikTok
 <h3>This script creates high-quality vertical quotes videos (1920x1080) in about 15sec per video!</h3>
-<h3>CHECK THE SAMPLES INSIDE '/samples'</h3>
 
+https://github.com/SamuraiPolix/ShortsMaker/assets/52662032/bf84a603-f397-4d3c-9d2a-4b2a95da0a8f
 
 This is my first big Python project, which I put a lot of effort into, hope you get the most out of it :)
+
+I used it to sell bible verse videos on Fiverr for a while.
 
 The script works by taking a background video from '/videos', an audio file from '/audios', a random font, and a quote (a bible verse) from the JSON file, and combining them all into 1 video.
 
@@ -33,8 +35,6 @@ json_file = f"{project_dir}/sources/verses_data/love_data.json"
 
 <h2>Results:</h2>
 
-https://github.com/SamuraiPolix/ShortsMaker/assets/52662032/a62e31b8-7ea9-4a98-9035-6054306d273f
-
 https://github.com/SamuraiPolix/ShortsMaker/assets/52662032/2a4ba17b-ddcd-47d3-82cd-78d0173a3dec
 
 We also generate a **Spreadsheet (.csv file)** with all the File names, verses, and references, to make it easier to find the video you want:
@@ -42,6 +42,6 @@ We also generate a **Spreadsheet (.csv file)** with all the File names, verses, 
 
 And you have access to the generated text images:
 
-<img src="https://github.com/SamuraiPolix/ShortsMaker/assets/52662032/0d2b3890-075c-40a3-bab5-74396c644315" width="45%" align="left"><img src="https://github.com/SamuraiPolix/ShortsMaker/assets/52662032/a0226a8f-47a2-4054-83f0-6a7258ed5e34" width="45%" align="right">
+<img src="https://github.com/SamuraiPolix/ShortsMaker/assets/52662032/a0226a8f-47a2-4054-83f0-6a7258ed5e34" width="45%">
 
 
