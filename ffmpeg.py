@@ -236,14 +236,14 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
                       f'[v2][3:v]overlay=(W-w)/2:{image_text_source_y}:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
                       f'-t {video_duration} -map "[v3]" -map 1 -c:v libx264 -preset veryfast -crf 18 "{output_path}"')
     # WITHOUT LOGO
-    # ffmpeg_command = (f'ffmpeg -y -i "{audio_file}" '
+    # ffmpeg_command = (f'ffmpeg -loglevel error -stats -y -loop 1 -i "{audio_file}" '
     #                   f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
     #                   # f'[v1]drawtext=fontfile={selected_font}:text=\'{text_verse}\':x=(w-text_w)/2:y=(h-text_h)/2:fontsize=60:fontcolor=white:'
     #                   # f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
-    #                   f'"drawtext=fontfile=\'{text_source_font}\':text=\'{text_source}\':x=(w-text_w)/2:y={text2_y}:fontsize=42:fontcolor=white:'
-    #                   f'enable=\'between(t,{text_start_time},{video_duration})\'[v1]; '
-    #                   f'[v1][2:v]overlay=(W-w)/2:{video_height}/4:enable=\'between(t,{text_start_time},{video_duration})\'[v2]" '
-    #                   f'-t {video_duration} -map "[v2]" -map 0:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
+    #                   f'"[v1]drawtext=fontfile=\'{text_source_font}\':text=\'{text_source}\':x=(w-text_w)/2:y={text2_y}:fontsize=42:fontcolor={font_color}:'
+    #                   f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
+    #                   f'[v2][2:v]overlay=(W-w)/2:{image_text_source_y}:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
+    #                   f'-t {video_duration} -map "[v3]" -map 1 -c:v libx264 -preset veryfast -crf 18 "{output_path}"')
 
     # Run FFMPEG command
     try:
