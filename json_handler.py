@@ -9,9 +9,6 @@ def get_data(json_file):
     return verses, refs
 
 
-import json
-
-
 def fix_json_structure(input_file, output_file):
     with open(input_file, 'r', encoding='utf-8') as file:
         data = json.load(file)

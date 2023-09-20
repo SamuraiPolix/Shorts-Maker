@@ -62,34 +62,18 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
     spreadsheet_col2 = list()
     spreadsheet_col3 = list()
 
-    estimated_runtime = round(get_avg_runtime('runtime.pk') * number_of_videos, 2)
-    # seconds
-    print(f"\033[0;32mEstimated run time: ", round(estimated_runtime, 2), " seconds\033[0m")
-    if round(estimated_runtime, 2) > 60:  # minutes
-        print("\033[0;32m = ", round(estimated_runtime / 60, 2), " minutes\033[0m")
-    if round(estimated_runtime / 60, 2) > 60:  # hours
-        print("\033[0;32m = ", round((estimated_runtime / 60) / 60, 2), " hours\033[0m")
-    print("\033[0;32mfor ", number_of_videos, " videos!\033[0m")
+    avg_runtime = get_avg_runtime('runtime.pk')
+    if avg_runtime != -1:
+        estimated_runtime = round(avg_runtime * number_of_videos, 2)
+        # seconds
+        print(f"\033[0;32mEstimated run time: ", round(estimated_runtime, 2), " seconds\033[0m")
+        if round(estimated_runtime, 2) > 60:  # minutes
+            print("\033[0;32m = ", round(estimated_runtime / 60, 2), " minutes\033[0m")
+        if round(estimated_runtime / 60, 2) > 60:  # hours
+            print("\033[0;32m = ", round((estimated_runtime / 60) / 60, 2), " hours\033[0m")
+        print("\033[0;32mfor ", number_of_videos, " videos!\033[0m")
 
-    logo_switch = -1
     for i in range(number_of_videos):
-        # TODO REMOVE AFTER!!
-        if (customer_name == 'courtneydookie_audiofix'):
-            if logo_switch == -1:
-                image_file = image_file.replace(".png", "3.png")
-                logo_switch *= -1
-            else:
-                image_file = image_file.replace("3.png", ".png")
-                logo_switch *= -1
-
-        if (customer_name == 'tifflove44'):
-            if logo_switch == -1:
-                image_file = image_file.replace("_3.png", "_4.png")
-                logo_switch *= -1
-            else:
-                image_file = image_file.replace("_4.png", "_3.png")
-                logo_switch *= -1
-
         start_time = time.time()
         print(f"Creating Video #{i}")
 
@@ -119,10 +103,6 @@ def create_videos(video_folder, audio_folder, json_file, fonts_dir, output_folde
         text_source_for_name = text_source_for_image.replace(' ', '')
 
         file_name = f"/{i}-{text_source_for_name}_{random_video_num}_{random_audio_num}_{random_font_num}.mp4"
-
-        # TODO DELETE
-        if (customer_name == 'cafmax_rev'):
-            text_source += " (ESV)"
 
         create_video(text_verse=text_verse, text_source=text_source, text_source_font=text_source_font,
                      text_source_for_image=text_source_for_image,
@@ -158,13 +138,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
                  image_file,
                  font_file, font_size, font_chars, output_path, file_name, posts=True):
     # Coordinates of logo image and text2 clips
-    # This VVV is for the small logo from the beginning
-    # image_y = 1600-75
-    # NEW logo whole screen:
     image_y = 0
-    ############ image_text_source_y = 1920/4          # 1920/4 = 480
-    ############ text2_y = 1300
-    # For new customer:
     image_text_source_y = 800
 
     # Get the video size
@@ -182,17 +156,8 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     # Set the start time of text
     text_start_time = 1
 
-    text_color = None
+    text_color = (255, 255, 255, 255)
     font_color = "white"
-    # if video_file.__contains__("black"):
-    #     text_color = (0, 0, 0, 255)
-    #     font_color = "black"
-    # if video_file.__contains__("white"):
-    #     text_color = (255, 255, 255, 255)
-    #     font_color = "white"
-    # if video_file.__contains__("gray"):
-    #     text_color = (169, 169, 169, 255)
-    #     font_color = "gray"
 
     # Create image of verse
     created_verse_image_data = verse_handler.create_image(text_verse, font_file, font_size, font_chars,
@@ -215,17 +180,7 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
     text_source = text_source.replace(':', '\:')
     output_folder = output_path
     output_path += f"/{file_name}"
-    # # FFMPEG command to overlay images and text onto input video
-    # ffmpeg_command = (f'ffmpeg -loglevel error -stats -y -loop 1 -i "{image_file}" -i "{audio_file}" '
-    #                   f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
-    #                   f'"[2:v][0:v]overlay=(W-w)/2:{image_y}[v1]; '
-    #                   # f'[v1]drawtext=fontfile={selected_font}:text=\'{text_verse}\':x=(w-text_w)/2:y=(h-text_h)/2:fontsize=60:fontcolor=white:'
-    #                   # f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
-    #                   f'[v1]drawtext=fontfile=\'{text_source_font}\':text=\'{text_source}\':x=(w-text_w)/2:y={text2_y}:fontsize=42:fontcolor=white:'
-    #                   f'enable=\'between(t,{text_start_time},{video_duration})\'[v2]; '
-    #                   f'[v2][3:v]overlay=(W-w)/2:{image_text_source_y}:enable=\'between(t,{text_start_time},{video_duration})\'[v3]" '
-    #                   f'-t {video_duration} -map "[v3]" -map 1:a -c:v libx264 -preset veryfast -crf 18 -c:a copy "{output_path}"')
-    # FIX AUDIO:
+    # FFMPEG command to overlay images and text onto input video
     ffmpeg_command = (f'ffmpeg -loglevel error -stats -y -loop 1 -i "{image_file}" -i "{audio_file}" '
                       f'-i "{video_file}" -i "{created_verse_image}" -r 24 -filter_complex '
                       f'"[2:v][0:v]overlay=(W-w)/2:{image_y}[v1]; '
@@ -247,9 +202,8 @@ def create_video(text_verse, text_source, text_source_font, text_source_for_imag
 
     # Run FFMPEG command
     try:
-        subprocess.check_call(ffmpeg_command, shell=True)
+        subprocess.check_call(ffmpeg_command)
     except subprocess.CalledProcessError as e:
-        # Handle the exception here
         print(f"An error occurred: {e}")
         sys.exit()
 
@@ -296,7 +250,11 @@ def create_post_images(video_path: str, verse_image_path, text_source, output_fo
 
 def get_avg_runtime(filename: str):
     with open(filename, 'rb') as fi:
-        return pickle.load(fi)
+        try:
+            return pickle.load(fi)
+        except EOFError:    # If file is empty because it's the first run
+            return -1
+
 
 
 def update_avg_runtime(curr_runtime: float, filename: str):

@@ -3,11 +3,8 @@ import os
 import subprocess
 import sys
 from string import ascii_letters
-
-import cv2
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import textwrap
-import json_handler
 
 
 def create_image(text, font_path, font_size, max_char_count, image_size, save_path, text_source, text_color):
@@ -28,7 +25,7 @@ def create_image(text, font_path, font_size, max_char_count, image_size, save_pa
     # Define our text:
     # Calculate the average length of a single character of our font.
     # Note: this takes into account the specific font and font size.
-    avg_char_width = sum(font.getsize(char)[0] for char in ascii_letters) / len(ascii_letters)
+    avg_char_width = sum(font.getbbox(char)[2] for char in ascii_letters) / len(ascii_letters)
 
     # Translate this average length into a character count
     max_char_count = max(int(img.size[0] * .718 / avg_char_width), max_char_count)
@@ -120,7 +117,7 @@ def cut_image(image_file, output_file):
 
 def fix_fonts(text, font):
     text = text.replace('—', '-')
-    # Font 6 can't display '
+    # Font "FlowersSunday" can't display '
     if (font.__contains__("FlowersSunday")):
         return text.replace("'", "")
     return text
